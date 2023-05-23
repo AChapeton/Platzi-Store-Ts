@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Card } from "../../Components/Card"
 import { useProductsStore } from "../../store/useProducts";
+import { ProductDetail } from "../../Components/ProductDetail";
 
 function Home() {
 
@@ -18,14 +19,17 @@ function Home() {
   }, [addProducts])
 
   return (
-    <div className="grid gap-4 grid-cols-2 w-full max-w-screen-lg">
-      {
-        products?.map(product => (
-          // <h1>{product.title}</h1>
-          <Card data={product}/>
-        ))
-      }
-    </div>
+    <>
+      <ProductDetail/>
+      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+        {
+          products?.map(product => (
+            // <h1>{product.title}</h1>
+            <Card data={product}/>
+          ))
+        }
+      </div>
+    </>
   )
 }
 
