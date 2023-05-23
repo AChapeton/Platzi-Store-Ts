@@ -5,6 +5,7 @@ import { MyOrder } from "../MyOrder"
 import { MyOrders } from "../MyOrders"
 import {SignIn} from '../SignIn'
 import { NotFound } from "../NotFound"
+import {Navbar} from '../../Components/Navbar'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/not-found" element={<NotFound/>}/>
       </Routes>
+      <Navbar/>
     </BrowserRouter>
   )
 }
