@@ -5,11 +5,14 @@ import { MyOrder } from "../MyOrder"
 import { MyOrders } from "../MyOrders"
 import {SignIn} from '../SignIn'
 import { NotFound } from "../NotFound"
-import {Navbar} from '../../Components/Navbar'
+import { Navbar } from '../../Components/Navbar'
+import { Layout } from '../../Components/Layout'
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar/>
+      <Layout>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/my-account" element={<MyAccount/>}/>
@@ -18,7 +21,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/not-found" element={<NotFound/>}/>
       </Routes>
-      <Navbar/>
+      </Layout>
     </BrowserRouter>
   )
 }
