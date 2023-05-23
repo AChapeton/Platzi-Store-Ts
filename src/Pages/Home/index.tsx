@@ -18,11 +18,11 @@ function Home() {
   }, [addProducts])
 
   return (
-    <div>
-      <Card/>
+    <div className="grid gap-4 grid-cols-2 w-full max-w-screen-lg">
       {
         products?.map(product => (
-          <h1>{product.title}</h1>
+          // <h1>{product.title}</h1>
+          <Card data={product}/>
         ))
       }
     </div>
