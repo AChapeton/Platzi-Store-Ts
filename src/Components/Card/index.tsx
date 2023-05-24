@@ -1,5 +1,6 @@
 import { Product } from "../../types"
-import { useShoppingCartStore, useToggleProductDetail, useProductDetail } from "../../store/useShoppingCart"
+import { useToggleProductDetail, useProductDetail } from "../../store/useProductDetail"
+import {useShoppingCartStore} from "../../store/useShoppingCart"
 
 interface CardProps {
   data: Product

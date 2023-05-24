@@ -1,4 +1,4 @@
-import { useProductDetail, useToggleProductDetail } from '../../store/useShoppingCart'
+import { useProductDetail, useToggleProductDetail } from '../../store/useProductDetail'
 import './styles.css'
 
 function ProductDetail() {
