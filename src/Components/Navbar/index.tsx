@@ -1,9 +1,9 @@
 import {NavLink} from 'react-router-dom'
-import { useShoppingCartStore } from '../../store/useShoppingCart'
+// import { useShoppingCartStore } from '../../store/useShoppingCart'
 
 function Navbar() {
 
-  const {count} = useShoppingCartStore()
+  // const {count} = useShoppingCartStore()
 
   const activeStyle = "underline underline-offset-4"
 
@@ -87,7 +87,7 @@ function Navbar() {
           <NavLink 
             to='/'
             className={({isActive}) => isActive ? activeStyle : undefined}>
-            Cart {count}
+            {/* Cart {count} */}
           </NavLink>
         </li>
       </ul>

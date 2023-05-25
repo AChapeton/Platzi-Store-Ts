@@ -5,8 +5,6 @@ function ProductDetail() {
   const {isProductDetailOpen, closeProductDetail} = useToggleProductDetail()
   const {product} = useProductDetail()
 
-  console.log(product)
-
   return (
     <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed right-0 border border-black rounded-lg bg-white`}>
       <div className='flex justify-between items-center p-6'>
