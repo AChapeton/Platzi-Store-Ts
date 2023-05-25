@@ -1,23 +1,5 @@
 import { create } from "zustand";
-import { Product } from "../types";
-
-// interface ShoppingCartState {
-//   count: number
-//   setCount: () => void
-// }
-
-// export const useShoppingCartStore = create<ShoppingCartState>(set => ({
-//   count: 0,
-//   setCount: () => set(state => (
-//     {count: state.count + 1}
-//   )),
-// }))
-
-interface ProductCart {
-  product: Product
-  quantity: number
-  total: number
-}
+import { Product, ProductCart } from "../types";
 
 interface ShoppingCartState {
   cart: Array<ProductCart>,
@@ -38,11 +20,6 @@ export const useShoppingCartStore = create<ShoppingCartState>(set => ({
       newCart = [...state.cart, {product: productData, quantity: 1, total: productData.price}]
       return {cart: [...newCart]}
     }
-    // if(state.cart){
-    //   return {cart: [...state.cart, product]}
-    // }else{
-    //   return {cart: [...state.cart, {product, quantity: 1}]}
-    // }
   })
 }))
 

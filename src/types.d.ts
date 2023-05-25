@@ -12,3 +12,9 @@ export interface Category {
   name: string
   image: string
 }
+
+export interface ProductCart {
+  product: Product
+  quantity: number
+  total: number
+}
