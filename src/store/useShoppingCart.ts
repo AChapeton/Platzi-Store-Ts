@@ -5,6 +5,7 @@ interface ShoppingCartState {
   cart: Array<ProductCart>,
   addProductToCart: (product: Product) => void
   deleteProductFromCart: (id: number) => void
+  emptyCart: () => void
 }
 
 export const useShoppingCartStore = create<ShoppingCartState>(set => ({
@@ -26,5 +27,8 @@ export const useShoppingCartStore = create<ShoppingCartState>(set => ({
     const newCart: Array<ProductCart> = state.cart.filter(product => product.product.id != id)
     return {cart: [...newCart]}
   }),
+  emptyCart: () => set(() => (
+    {cart: []}
+  ))
 }))
 

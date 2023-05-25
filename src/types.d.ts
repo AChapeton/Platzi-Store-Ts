@@ -18,3 +18,10 @@ export interface ProductCart {
   quantity: number
   total: number
 }
+
+export interface Order {
+  products: Array<ProductCart>
+  date: string
+  totalProducts: number
+  totalPrice: number
+}
