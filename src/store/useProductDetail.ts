@@ -1,26 +1,10 @@
 import { create } from "zustand";
 import { Product } from "../types";
 
-interface ToggleProductDetailState {
-  isProductDetailOpen: boolean
-  openProductDetail: () => void
-  closeProductDetail: () => void
-}
-
 interface ProductDetailState {
   product: Product
   showProductDetail: (product: Product) => void
 }
-
-export const useToggleProductDetail = create<ToggleProductDetailState>(set => ({
-  isProductDetailOpen: false,
-  openProductDetail: () => set(() => (
-    {isProductDetailOpen: true}
-  )),
-  closeProductDetail: () => set(() => (
-    {isProductDetailOpen: false}
-  ))
-}))
 
 export const useProductDetail = create<ProductDetailState>(set => ({
   product: {
