@@ -1,10 +1,17 @@
 import { ProductCart } from "../../types"
+import { useShoppingCartStore } from "../../store/useShoppingCart"
 
 interface OrderCardProps {
   productCart: ProductCart
 }
 
 function OrderCard({productCart}: OrderCardProps) {
+
+  const {deleteProductFromCart} = useShoppingCartStore()
+
+  const handleDeleteProduct = (id: number) => {
+    deleteProductFromCart(id)
+  }
 
   return (
     <div className="flex justify-between items-center mb-3">
@@ -21,7 +28,7 @@ function OrderCard({productCart}: OrderCardProps) {
         <p className="text-lg font-medium">
           ${productCart.total}
         </p>
-        <p>x</p>
+        <p onClick={() => handleDeleteProduct(productCart.product.id)}>x</p>
       </div>
     </div>
   )

@@ -4,6 +4,7 @@ import { Product, ProductCart } from "../types";
 interface ShoppingCartState {
   cart: Array<ProductCart>,
   addProductToCart: (product: Product) => void
+  deleteProductFromCart: (id: number) => void
 }
 
 export const useShoppingCartStore = create<ShoppingCartState>(set => ({
@@ -20,6 +21,10 @@ export const useShoppingCartStore = create<ShoppingCartState>(set => ({
       newCart = [...state.cart, {product: productData, quantity: 1, total: productData.price}]
       return {cart: [...newCart]}
     }
-  })
+  }),
+  deleteProductFromCart: (id: number) => set(state => {
+    const newCart: Array<ProductCart> = state.cart.filter(product => product.product.id != id)
+    return {cart: [...newCart]}
+  }),
 }))
 
