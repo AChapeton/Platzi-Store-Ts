@@ -7,10 +7,17 @@ interface OrderCardProps {
 function OrdersCard({order}: OrderCardProps) {
 
   return (
-    <div className="flex justify-between items-center mb-3 border border-black">
-      <p>01.02.23</p>
-      <span>{order.totalProducts}</span>
-      <span>${order.totalPrice}</span>
+    <div className="flex justify-between items-center border border-black w-80 p-4 rounded-lg mb-4">
+      <div className="flex justify-between w-full">
+        <p className="flex flex-col ">
+          <span className="font-light">{order.date}</span>
+          <span className="font-light">{order.totalProducts} articles</span>
+        </p>
+        <p className="flex items-center gap-2">
+          <span className="font-medium text-xl">${order.totalPrice}</span>
+          <span>{'>'}</span>
+        </p>
+      </div>
     </div>
   )
 }
