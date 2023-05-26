@@ -35,6 +35,7 @@ export const useOrders = create<OrdersState>(set => ({
       orders: [
         ...state.orders,
         {
+          id: newOrder.id,
           products: [...newOrder.products],
           date: newOrder.date,
           totalProducts: newOrder.totalProducts,

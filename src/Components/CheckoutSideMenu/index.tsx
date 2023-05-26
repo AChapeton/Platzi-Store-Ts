@@ -5,6 +5,7 @@ import { useTotalPrice } from "../../hooks/useTotalPrice"
 import { useTotalProducts } from '../../hooks/useTotalProducts'
 import { useOrders } from "../../store/useOrders"
 import { ProductCart, Order } from "../../types"
+import uniqid from 'uniqid'
 
 function CheckoutSideMenu() {
   const {cart, emptyCart} = useShoppingCartStore()
@@ -14,6 +15,7 @@ function CheckoutSideMenu() {
 
   const handleCheckout = (cart: Array<ProductCart>) => {
     const newOrder: Order = {
+      id: uniqid(),
       products: [...cart],
       date: new Date().toDateString(),
       totalProducts: checkoutTotalProducts,

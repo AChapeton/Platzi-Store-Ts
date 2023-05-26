@@ -20,6 +20,7 @@ export interface ProductCart {
 }
 
 export interface Order {
+  id: string
   products: Array<ProductCart>
   date: string
   totalProducts: number
