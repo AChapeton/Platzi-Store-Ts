@@ -2,12 +2,14 @@ import { ProductCart } from "../../types"
 import { useShoppingCartStore } from "../../store/useShoppingCart"
 
 interface OrderCardProps {
-  productCart: ProductCart
+  order: ProductCart
 }
 
-function OrderCard({productCart}: OrderCardProps) {
+function OrderCard({order}: OrderCardProps) {
 
-  const {deleteProductFromCart} = useShoppingCartStore()
+  const {cart, deleteProductFromCart} = useShoppingCartStore()
+
+  const deleteIcon = <p onClick={() => handleDeleteProduct(order.product.id)}>x</p>
 
   const handleDeleteProduct = (id: number) => {
     deleteProductFromCart(id)
@@ -17,18 +19,21 @@ function OrderCard({productCart}: OrderCardProps) {
     <div className="flex justify-between items-center mb-3">
       <div className="flex items-center gap-2">
         <figure className="w-20 h-20">
-          <img className="w-full h-full rounded-lg object-cover" src={productCart.product.images[0]} alt={productCart.product.title} />
+          <img className="w-full h-full rounded-lg object-cover" src={order.product.images[0]} alt={order.product.title} />
         </figure>
         <div className="text-sm font-light">
-          <p>{productCart.product.title}</p>
-          <p>x {productCart.quantity}</p>
+          <p>{order.product.title}</p>
+          <p>x {order.quantity}</p>
         </div>
       </div>
       <div className="flex items-center gap-2">
         <p className="text-lg font-medium">
-          ${productCart.total}
+          ${order.total}
         </p>
-        <p onClick={() => handleDeleteProduct(productCart.product.id)}>x</p>
+        {
+          cart.length > 0
+            ? deleteIcon
+            : ''}
       </div>
     </div>
   )

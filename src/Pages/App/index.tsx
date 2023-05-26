@@ -12,16 +12,17 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar/>
-      <Layout>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/my-account" element={<MyAccount/>}/>
-        <Route path="/my-order" element={<MyOrder/>}/>
-        <Route path="/my-orders" element={<MyOrders/>}/>
-        <Route path="/sign-in" element={<SignIn/>}/>
-        <Route path="/not-found" element={<NotFound/>}/>
-      </Routes>
-      </Layout>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/my-account" element={<MyAccount/>}/>
+            <Route path="/my-order" element={<MyOrder/>}/>
+            <Route path="/my-orders" element={<MyOrders/>}/>
+            <Route path="/my-orders/last" element={<MyOrder/>}/>
+            <Route path="/sign-in" element={<SignIn/>}/>
+            <Route path="/not-found" element={<NotFound/>}/>
+          </Routes>
+        </Layout>
     </BrowserRouter>
   )
 }
