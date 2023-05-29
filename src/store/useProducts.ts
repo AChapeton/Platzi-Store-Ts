@@ -8,7 +8,7 @@ interface ProductsState {
 
 interface FilteredProductsState {
   filteredProducts: Array<Product>
-  addFilteredProducts: (data: Array<Product>, searchedTitle: string) => void
+  addFilteredProducts: (data: Array<Product>, searchedTitle: string, searchedCategory: string) => void
 }
 
 export const useProductsStore = create<ProductsState>(set => ({
@@ -20,11 +20,33 @@ export const useProductsStore = create<ProductsState>(set => ({
   ))
 }))
 
+const filterProductsByTitle = (products: Array<Product>, title: string):  Array<Product> => {
+  return products?.filter(product => product.title.toLowerCase().includes(title.toLowerCase()))
+}
+
+const filterProductsByCategory = (products: Array<Product>, category: string):  Array<Product> => {
+  return products.filter(product => product.category.name.toLowerCase() === category)
+}
+
 export const useFilteredProductsStore = create<FilteredProductsState>(set => ({
   filteredProducts: [],
-  addFilteredProducts: (data: Array<Product>) => set(() => (
-    {
-      filteredProducts: [...data]
+  addFilteredProducts: (data: Array<Product>, searchedTitle: string, searchedCategory: string) => set(() => {
+    let newProducts: Array<Product> = []
+    if(searchedTitle && !searchedCategory) {
+      newProducts = filterProductsByTitle(data, searchedTitle)
     }
-  ))
+    if(!searchedTitle && searchedCategory) {
+      newProducts = filterProductsByCategory(data, searchedCategory)
+    }
+
+    if(searchedTitle && searchedCategory) {
+      newProducts = filterProductsByCategory(data, searchedCategory).filter(product => product.title.toLowerCase().includes(searchedTitle.toLowerCase()))
+    }
+
+    if(!searchedTitle && !searchedCategory) {
+      newProducts = []
+    }
+
+    return {filteredProducts: [...newProducts]}
+  })
 }))

@@ -1,21 +1,18 @@
-import { useEffect, useState} from "react";
+import { useEffect } from "react";
 import { Card } from "../../Components/Card"
 import { Sidebar } from "../../Components/Sidebar";
 import { ProductDetail } from "../../Components/ProductDetail";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
+// import { useFilterProducts } from "../../hooks/useFilterProducts";
 import { useProductsStore, useFilteredProductsStore } from "../../store/useProducts";
 import { useToggleProductDetail, useToggleCheckout } from "../../store/useSidebar";
-import { useFilterProducts } from "../../hooks/useFilterProducts";
-import { Product } from "../../types";
 
 function Home() {
 
   const {products, addProducts} = useProductsStore()
-  // const {filteredProducts, addFilteredProducts} = useFilteredProductsStore()
   const {isProductDetailOpen} = useToggleProductDetail()
   const {isCheckoutOpen} = useToggleCheckout()
-  const [searchedTitle, setSearchedTitle] = useState<string>('')
-  const filteredProducts = useFilterProducts(products, searchedTitle)
+  const {filteredProducts, addFilteredProducts} = useFilteredProductsStore()
 
 
   useEffect(()  => {
@@ -23,32 +20,30 @@ function Home() {
       const res: Response = await fetch('https://api.escuelajs.co/api/v1/products')
       const data: [] = await res.json()
       addProducts(data)
-      console.log(data)
     }
 
     fetchProducts()
   }, [addProducts])
 
-  const handleInputSearch = (value: string) => {
-    setSearchedTitle(value)
+  const handleInputSearch = (title: string) => {
+    addFilteredProducts(products, title, '')
   }
 
   const renderView = () => {
-    if(searchedTitle.length > 0){
-      if(filteredProducts.length > 0){
-        return(
-          filteredProducts?.map(product => (
-            // <h1>{product.title}</h1>
-            <Card data={product}/>
-          ))
-        )
-      }else{
-        <div>We did not found anything</div>
-      }
+
+    if(filteredProducts.length > 0){
+      return(
+        filteredProducts?.map(product => (
+          <Card data={product}/>
+        ))
+      )
     }else{
+      <div>We did not found anything</div>
+    }
+
+    if(products.length > 0){
       return(
         products?.map(product => (
-          // <h1>{product.title}</h1>
           <Card data={product}/>
         ))
       )
